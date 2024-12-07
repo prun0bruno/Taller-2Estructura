@@ -76,7 +76,7 @@ int main() {
                     
                     if(turn>1) turn = 0;
                     tablero.mostrarTablero();
-                    if(turn==0) {std::cout << "TURNO DE JUGADOR " << turn+1 <<". SELECCIONE NUMERO DEL 0 AL 8 PARA COLOCAR PIEZA" <<std::endl;}
+                    if(turn==0) {std::cout << "TURNO DE JUGADOR " << turn+1 <<" (X). SELECCIONE NUMERO DEL 0 AL 8 PARA COLOCAR PIEZA" <<std::endl;}
                     if(turn==1) {std::cout << "TURNO DE JUGADOR " << turn+1 <<std::endl;}
                     char m;
                     if(turn==0) {
@@ -123,9 +123,62 @@ int main() {
                
                 break;
             }
-            case 3:
+            case 3:{
+            Tablero tablero = Tablero();
+                int turn = 0;
+                bool win = false;
+                int moves = 0;
+                do{
+                    
+                    if(turn>1) turn = 0;
+                    tablero.mostrarTablero();
+                    if(turn==0) {std::cout << "TURNO DE JUGADOR " << turn+1 <<" (X). SELECCIONE NUMERO DEL 0 AL 8 PARA COLOCAR PIEZA" <<std::endl;}
+                    if(turn==1) {std::cout << "TURNO DE JUGADOR " << turn+1 <<std::endl;}
+                    char m;
+                    if(turn==0) {
+                        m = 'X';
+                        //jugar
+                        int choice;
+                        std::cin >> choice;
+                        while(!tablero.play(choice,m)) {
+                            std::cout << "POSICION INVALIDA. SELECCIONE NUMERO VALIDO."<<std::endl;
+                            int choice;
+                            std::cin >> choice;
+                            if(tablero.play(choice,m)) break;
+                        }
 
+
+
+
+                    } else { //juega inteligencia artificial
+                        m = 'O';
+                        tablero.AI_playOptimized();
+                    }
+
+                    win = tablero.preguntaGanando(m);
+                    if(win) {
+                        system("cls");
+                        tablero.mostrarTablero();
+                        std::cout << "GANA JUGADOR "<< turn+1 <<"."<<std::endl;
+                        std::cout << std::endl;
+                        break;
+                    }
+                    turn++;
+                    
+                    moves++;
+                    system("cls");
+                    if(moves == 9 && !win) {
+                        system("cls");
+                        tablero.mostrarTablero();
+                        std::cout <<"EMPATE"<< std::endl;
+                        std::cout << std::endl;
+                        break;
+                    }
+
+                } while(!win);
+               
                 break;
+            }
             case 4:
                 std::cout <<"GRACIAS POR JUGAR!" <<std::endl;
                 break;

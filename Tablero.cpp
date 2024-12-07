@@ -48,6 +48,7 @@
         play(bestMove+1,'O'); //la función play del tablero toma indices visuales (1 al 9)
         return;
     }
+    
     int Tablero::minimax(int depth, bool maximiza) {
         //reviso si hay algun ganador o un empate. O es la IA
         if(preguntaGanando('O')) return 10-depth;
@@ -59,7 +60,7 @@
         if(blankCount==0) return 0; //empate, no quedan espacios en blanco
 
         if(maximiza) { // es la IA la que está intentando simular maximizar su puntaje para ganar
-            int bestScore = -100000;
+            int bestScore = -10000;
             for(int i = 0; i<9; i++) {
                 if(board[i]==' ') {
                     board[i] = 'O';
@@ -74,14 +75,14 @@
             return bestScore;
 
         } else {
-            int bestScore = 100000;
+            int bestScore = 10000;
             for(int i = 0; i<9; i++) {
                 if(board[i] == ' ') {
                     board[i] = 'X';
 
                     int newScore = minimax(depth+1,true);
                     if(bestScore>newScore) { //AQUI EL JUGADOR X HIPOTETICO QUIERE MINIMIZAR SU PUNTAJE
-                        bestScore = newScore;
+                        bestScore = newScore; //BESTSCORE DEBERÍA SER LO MÁS BAJO POSIBLE
                     }
                     board[i] = ' ';
                 }
@@ -91,6 +92,80 @@
         }
 
     }
+
+    void Tablero::AI_playOptimized() {
+        int bestMove = -1;
+        int bestScore = -10000; //el puntaje de la ia es muy bajo para poder maximizarlo aplicando minimax
+        
+        for(int i = 0; i<9; i++) {
+            if(board[i]==' ') {
+                board[i] = 'O';
+                int newScore = minimaxOptimized(0,false,-10000,10000);
+                if(bestScore<newScore) {
+                    bestScore = newScore;
+                    bestMove = i;
+                }
+                board[i] = ' ';
+            }
+        }
+        play(bestMove+1,'O'); //la función play del tablero toma indices visuales (1 al 9)
+        return;
+
+    }
+    int Tablero::minimaxOptimized(int depth, bool maximiza, int alpha, int beta) {
+        if(preguntaGanando('O')) return 10-depth;
+        if(preguntaGanando('X')) return depth-10;
+        int blankCount = 0;
+        for(int i = 0; i<9; i++) {
+            if(board[i]==' ') blankCount++;
+        }
+        if(blankCount==0) return 0;
+
+        if(maximiza) { // es la IA la que está intentando simular maximizar su puntaje para ganar
+            int bestScore = -10000;
+            for(int i = 0; i<9; i++) {
+                if(board[i]==' ') {
+                    board[i] = 'O';
+
+                    int newScore = minimaxOptimized(depth+1,false,alpha,beta);
+                    if(bestScore<newScore) {
+                        bestScore = newScore;
+                    }
+                    if(alpha<newScore) {
+                        alpha = newScore;
+                    } else alpha = alpha;
+                    board[i] = ' '; //deshacemos movimiento
+                    if(beta<=alpha) break; //aquí podamos solo cuando alfa sea mayor
+
+
+                }
+            }
+            return bestScore;
+
+        } else {
+            int bestScore = 10000;
+            for(int i = 0; i<9; i++) {
+                if(board[i] == ' ') {
+                    board[i] = 'X';
+
+                    int newScore = minimaxOptimized(depth+1,true,alpha,beta);
+                    if(bestScore>newScore) { //AQUI EL JUGADOR X HIPOTETICO QUIERE MINIMIZAR SU PUNTAJE
+                        bestScore = newScore;
+                    }
+                    if(beta>newScore) {
+                        beta = newScore;
+                    } else beta = beta;
+                    board[i] = ' ';
+                    if(beta<=alpha) break;
+                    
+                }
+
+            }
+            return bestScore;
+        }
+        
+    }
+
 
     bool Tablero::preguntaGanando(char m) {
 

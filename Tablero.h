@@ -16,6 +16,10 @@ class Tablero {
         void AI_play();
         int minimax(int depth, bool maximiza);
 
+        //OPTIMIZACION
+        void AI_playOptimized();
+        int minimaxOptimized(int depth, bool maximiza,int alpha, int beta); //poda de alfa beta
+
         //control
         bool preguntaGanando(char m);
     
