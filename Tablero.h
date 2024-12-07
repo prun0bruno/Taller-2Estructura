@@ -13,7 +13,8 @@ class Tablero {
 
         //funciones/acciones de juego
         bool play(int m,char n); //m será el indice donde poner el caractert
-        int AI_play();
+        void AI_play();
+        int minimax(int depth, bool maximiza);
 
         //control
         bool preguntaGanando(char m);
