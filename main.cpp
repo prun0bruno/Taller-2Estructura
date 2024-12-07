@@ -76,7 +76,7 @@ int main() {
                     
                     if(turn>1) turn = 0;
                     tablero.mostrarTablero();
-                    if(turn==0) {std::cout << "TURNO DE JUGADOR " << turn+1 <<" (X). SELECCIONE NUMERO DEL 0 AL 8 PARA COLOCAR PIEZA" <<std::endl;}
+                    if(turn==0) {std::cout << "TURNO DE JUGADOR " << turn+1 <<" (X). SELECCIONE NUMERO DEL 1 AL 9 PARA COLOCAR PIEZA" <<std::endl;}
                     if(turn==1) {std::cout << "TURNO DE JUGADOR " << turn+1 <<std::endl;}
                     char m;
                     if(turn==0) {
@@ -132,7 +132,7 @@ int main() {
                     
                     if(turn>1) turn = 0;
                     tablero.mostrarTablero();
-                    if(turn==0) {std::cout << "TURNO DE JUGADOR " << turn+1 <<" (X). SELECCIONE NUMERO DEL 0 AL 8 PARA COLOCAR PIEZA" <<std::endl;}
+                    if(turn==0) {std::cout << "TURNO DE JUGADOR " << turn+1 <<" (X). SELECCIONE NUMERO DEL 1 AL 9 PARA COLOCAR PIEZA" <<std::endl;}
                     if(turn==1) {std::cout << "TURNO DE JUGADOR " << turn+1 <<std::endl;}
                     char m;
                     if(turn==0) {
