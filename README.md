@@ -1,5 +1,7 @@
 # Taller-2Estructura
-
+Maximiliano Pizarro, 21.776.433-5, maximiliano.pizarro@alumnos.ucn.cl, paralelo C2
+Vincenzo Paolo Porzio Elgueta, 21.369.897-4, vincenzo.porzio@alumnos.ucn.cl, paralelo C2
+Diego Ignacio Parga Meza, 21.621.105-7, diego.parga@alumnos.ucn.cl , paralelo C2
 
 ## Compilación e Instalación
 
@@ -44,6 +46,6 @@ La naturaleza de este algoritmo permite ponderar las distintas rutas posibles de
 El output de la función es un puntaje que se va a comparar al inicio de la llamada recursiva para decidir si se toma el camino o no. Cualquier llamada retornará 10 menos la profundidad o iteración de llamada, en caso de que el algoritmo detecte que la jugada favorece (hace ganar) al jugador Max, y retornará la profundidad menos 10 en caso de que la jugada favorezca al jugador contrario. Si la jugada resulta en un empate, el valor retornado será 0.
 
 ### - Algoritmo de optimización poda Alfa-Beta:
-
+Dentro de cada turno (nodo) y su continuación (turno del oponente con todas sus posibles jugadas) se mantiene nota del resultado minimax, esto con una excepción: el algoritmo ahora toma un valor alfa y uno beta. En cada nodo estos valores serán llenados por el valor máximo entre los nodos hijos en alfa (si es un turno Max) y por el valor mínimo entre los nodos hijos en beta (si es un turno Min). Por cada revisión de los posibles valores Minimax que toman los nodos hijos se recolectan estos valores alfa y beta, y se comparan ambos dentro del mismo nodo. Una vez se cumple la condición de que un alfa obtenido sea mayor que el beta obtenido, se puede "podar" todas las ramas siguientes del árbol y dejar de iterar por los siguientes hijos del nodo, puesto que ninguno será capaz de ofrecer una mejor alternativa ya que alfa ya es mayor que beta y eso es suficiente para determinar que la jugada siguiendo ese camino es óptima y que las ramas restantes del nodo no cambiarán el resultado final. Esto es porque las decisiones tomadas por el oponente en las ramas restantes no pueden mejorar el resultado para el jugador actual.
 ## Análisis de complejidad antes y después de poda Alfa-Beta:
  
