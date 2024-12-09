@@ -1,7 +1,7 @@
 # Taller-2Estructura
-Maximiliano Pizarro, 21.776.433-5, maximiliano.pizarro@alumnos.ucn.cl, paralelo C2
-Vincenzo Paolo Porzio Elgueta, 21.369.897-4, vincenzo.porzio@alumnos.ucn.cl, paralelo C2
-Diego Ignacio Parga Meza, 21.621.105-7, diego.parga@alumnos.ucn.cl , paralelo C2
+* Maximiliano Pizarro, 21.776.433-5, maximiliano.pizarro@alumnos.ucn.cl, paralelo C2
+* Vincenzo Paolo Porzio Elgueta, 21.369.897-4, vincenzo.porzio@alumnos.ucn.cl, paralelo C2
+* Diego Ignacio Parga Meza, 21.621.105-7, diego.parga@alumnos.ucn.cl , paralelo C2
 
 ## Compilación e Instalación
 
